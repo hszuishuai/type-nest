@@ -4,6 +4,7 @@ import { UserService } from "../services";
 
 import RedisClient from "../redis/redis";
 
+const Redis = new RedisClient();
 @Controller("user")
 
 class UserController {
@@ -11,9 +12,9 @@ class UserController {
 
     @Get("getUser")
     findUser(): User {
-        RedisClient.set("name", "11111");
+        Redis.set("name", "11111");
         // tslint:disable-next-line:no-console
-        console.log(RedisClient.get("name"));
+        console.log(Redis.get("name"));
         return this.userService.setUser({ username: "22", possword: "2" });
     }
 
