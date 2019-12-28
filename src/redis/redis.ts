@@ -22,17 +22,28 @@ class RedisStore {
         return await this.Client.del(key);
     }
     async getHkey(hkey: string, key: string) {
-        const data = await this.Client.hget(hkey, key);
-        return data;
+        return new Promise((resolve, reject) => {
+            this.Client.hget(hkey, key, (err, value) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(value);
+                }
+            });
+        });
+
+        // tslint:disable-next-line:no-consol
     }
     async setHmp(hkey: string, data: object, express?: number) {
-        this.Client.hmset(hkey, data);
-        this.Client.expire(hkey, express);
+        await this.Client.hmset(hkey, data, Redis.print);
+        await this.Client.expire(hkey, express);
     }
     async clearHkey(hkey: string) {
         return await this.Client.hdel(hkey);
     }
-
 }
+
+// 封装成一个Promise
+
 
 export default RedisStore;

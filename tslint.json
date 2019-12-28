@@ -11,6 +11,11 @@
       true,
       "double"
     ],
+    "no-console": [
+      false,
+      "log",
+      "error"
+    ],
     "member-access": [
       false
     ],
