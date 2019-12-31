@@ -45,5 +45,4 @@ class RedisStore {
 
 // 封装成一个Promise
 
-
 export default RedisStore;

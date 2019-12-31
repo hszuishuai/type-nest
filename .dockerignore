@@ -1,0 +1,4 @@
+#Dock 过滤文件
+
+.git
+node_modules
