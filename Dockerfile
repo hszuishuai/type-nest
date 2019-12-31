@@ -13,6 +13,10 @@ COPY  package.json /usr/src/app/package.json
 RUN cd /usr/src/app/
 RUN npm i 
 
+# 将当前的文件拷贝到 /usr/src/nest 文件夹下
+
+COPY . /usr/src/nest/
+
 # 暴露的端口号
 EXPOSE  4000
 
