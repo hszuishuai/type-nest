@@ -20,4 +20,4 @@ COPY . /usr/src/nest/
 # 暴露的端口号
 EXPOSE  4000
 
-CMD [ "nest", "start" ]
+CMD nest start
