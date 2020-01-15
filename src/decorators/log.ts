@@ -12,14 +12,14 @@ function Log<T extends IConstructable>(constructor: T) {
 }
 
 /**
- * 
+ *
  * @param target ;
  * @param propertyName;
  * @param descriptor ;
  */
 
 function Method(
-    target: Object,
+    target: object,
     propertyName: any,
     descriptor: TypedPropertyDescriptor<(...args: any[]) => any>) {
     console.log("target", target);
@@ -27,7 +27,17 @@ function Method(
     console.log("descriptor", descriptor);
 }
 
+/**
+ *  login
+ */
+
+function LoginConfig(params) {
+    return  (target: object, propertyName: string): void => {
+        target[propertyName] = params;
+    };
+}
 export {
     Log,
     Method,
+    LoginConfig,
 };

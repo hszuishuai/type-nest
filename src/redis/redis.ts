@@ -1,6 +1,5 @@
 
-import Redis = require("redis");
-
+import * as Redis from "redis";
 // 连接redis
 // const client =
 
@@ -21,9 +20,9 @@ class RedisStore {
     async clear(key) {
         return await this.Client.del(key);
     }
-    async getHkey(hkey: string, key: string) {
+    async getHkey(hKey: string, key: string) {
         return new Promise((resolve, reject) => {
-            this.Client.hget(hkey, key, (err, value) => {
+            this.Client.hget(hKey, key, (err, value) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -34,12 +33,14 @@ class RedisStore {
 
         // tslint:disable-next-line:no-consol
     }
-    async setHmp(hkey: string, data: object, express?: number) {
-        await this.Client.hmset(hkey, data, Redis.print);
-        await this.Client.expire(hkey, express);
+    async setHmp(hKey: string, data: object, express?: number) {
+        await this.Client.hmset(hKey, data, Redis.print);
+
+        // console.log(aa);
+        await this.Client.expire(hKey, express);
     }
-    async clearHkey(hkey: string) {
-        return await this.Client.hdel(hkey);
+    async clearHkey(hKey: string) {
+        return await this.Client.hdel(hKey);
     }
 }
 
